@@ -137,9 +137,11 @@ def process_email_task(file_data):
         msg = email.message_from_bytes(raw_bytes)
         body = get_email_body(msg)
         report = analyze_email(msg, body, raw_bytes)
+        
         return {
             "filename": filename,
-            "subject": msg.get("Subject", "(No Subject)"),
+            # FIXED: Wrap msg.get in str() to prevent Header objects from breaking JSON
+            "subject": str(msg.get("Subject", "(No Subject)")),
             "score": int(report.get("score", 0)),
             "reasons": report.get("reasons", [])
         }
