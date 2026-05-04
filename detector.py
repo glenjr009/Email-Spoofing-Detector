@@ -1,11 +1,13 @@
-import re, spf, dkim, dns.resolver, ipaddress, requests
+import re, spf, dkim, dns.resolver, ipaddress, requests, time
 
-# Get a free API key at abuseipdb.com to make this "Open Source" integration real
-ABUSE_IPDB_KEY = "YOUR_API_KEY_HERE" 
+ABUSE_IPDB_KEY = "YOUR_API_KEY" 
+intel_cache = {}
 
 def get_ip_intel(ip):
     if not ABUSE_IPDB_KEY or ip == "127.0.0.1":
         return 0, "No External Intel"
+    if ip in intel_cache:
+        return intel_cache[ip]
     url = 'https://api.abuseipdb.com/api/v2/check'
     headers = {'Accept': 'application/json', 'Key': ABUSE_IPDB_KEY}
     params = {'ipAddress': ip, 'maxAgeInDays': '90'}
@@ -13,61 +15,76 @@ def get_ip_intel(ip):
         res = requests.get(url, headers=headers, params=params, timeout=3)
         if res.status_code == 200:
             score = res.json()['data']['abuseConfidenceScore']
-            return score, f"Abuse Score: {score}%"
+            result = (score, f"Abuse Score: {score}%")
+            intel_cache[ip] = result
+            return result
     except: pass
     return 0, "Intel Offline"
 
 def analyze_email(msg, body, raw_bytes):
-    # CRITICAL: Initialize fresh lists for EVERY call to avoid duplicate reasons
+    start_time = time.time()
     reasons = []
     auth_score = 0
     content_score = 0
     
-    # 1. Identity Extraction
     from_hdr = str(msg.get("From", ""))
-    ret_path = str(msg.get("Return-Path", "") or msg.get("Reply-To", ""))
-    
     def get_dom(addr):
         m = re.search(r"[\w\.-]+@([\w\.-]+)", addr)
         return m.group(1).lower() if m else ""
+    author_domain = get_dom(from_hdr)
 
-    dom_from = get_dom(from_hdr)
-    dom_return = get_dom(ret_path) or dom_from
-
-    # 2. Authentication Logic (Actual Checks, not guesses)
-    from app import extract_sender_ip # Assuming this is in your app.py
+    from app import extract_sender_ip
     sender_ip = extract_sender_ip(msg)
-    
-    spf_res, _ = spf.check2(i=sender_ip, s="test@"+dom_return, h=dom_return)
-    
-    # 3. Strict DMARC Alignment (This is the 400-mark logic)
-    spf_aligned = (dom_from == dom_return or dom_from.endswith("." + dom_return))
-    
-    if spf_res != "pass":
-        auth_score += 30
-        reasons.append(f"SPF {spf_res.upper()}")
-    
-    if not spf_aligned and dom_from:
-        auth_score += 30
-        reasons.append("DMARC Alignment Mismatch")
 
-    # 4. OSINT Implementation
+    # --- GRANULAR SCORING ENGINE ---
+    
+    # 1. SPF Check (20 pts)
+    spf_res, _ = spf.check2(i=sender_ip, s="postmaster@"+author_domain, h=author_domain)
+    if spf_res != 'pass':
+        auth_score += 20
+        reasons.append(f"Infrastructure: SPF {spf_res.upper()}")
+
+    # 2. DMARC Alignment Check (25 pts)
+    # Checks if the visible domain matches the technical sender
+    spf_aligned = author_domain in sender_ip or any(author_domain.endswith(x) for x in [author_domain]) 
+    if not spf_aligned:
+        auth_score += 25
+        reasons.append("Identity: Domain Alignment Mismatch")
+
+    # 3. DKIM Cryptographic Check (15 pts)
+    try:
+        if dkim.verify(raw_bytes):
+            pass
+        else:
+            auth_score += 15
+            reasons.append("Security: DKIM Signature Invalid")
+    except:
+        auth_score += 10
+        reasons.append("Security: Missing Digital Seal (DKIM)")
+
+    # 4. OSINT Reputation (Variable pts: 0 to 50)
     abuse_score, intel_msg = get_ip_intel(sender_ip)
-    if abuse_score > 20:
-        auth_score += (abuse_score // 2)
-        reasons.append(f"OSINT: {intel_msg}")
+    if abuse_score > 10:
+        penalty = int(abuse_score / 2)
+        auth_score += penalty
+        reasons.append(f"Reputation: {intel_msg}")
 
-    # 5. Content Logic
+    # 5. Content Heuristics (10 pts per keyword)
     body_lower = (body or "").lower()
-    if any(x in body_lower for x in ["urgent", "action required", "verify your"]):
-        content_score += 20
-        reasons.append("Phishing Keywords Detected")
+    phish_terms = ["urgent", "verify", "suspend", "action required", "password"]
+    for term in phish_terms:
+        if term in body_lower:
+            content_score += 10
+            reasons.append(f"Heuristic: High-Risk Term [{term}]")
 
     total = auth_score + content_score
+    duration = round(time.time() - start_time, 4)
+
     return {
         "score": int(total),
         "auth_score": int(auth_score),
         "content_score": int(content_score),
-        "label": "SECURE" if total < 40 else "LIKELY SPOOF" if total < 80 else "HIGHLY LIKELY",
-        "reasons": reasons
+        "label": "SECURE" if total < 30 else "CAUTION" if total < 60 else "THREAT",
+        "reasons": list(set(reasons)), # Remove duplicates
+        "processing_time": duration
     }
