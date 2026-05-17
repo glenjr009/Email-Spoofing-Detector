@@ -9,8 +9,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
-# --- INTEL CONFIGURATION ---
-# REPLACE THIS WITH YOUR ACTUAL ABUSEIPDB API KEY
+
 ABUSE_IPDB_KEY = "5159bb61aeb70c0e382c63338f260eee9fa9a1c3aa964efece2efc5b8d22185ab542d2ae1389a66d" 
 intel_cache = {}
 
