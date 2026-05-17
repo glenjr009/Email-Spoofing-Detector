@@ -1,8 +1,8 @@
-# 📧 Vortex Mail Guard - Email Spoofing Detection System
+# 📧 Email-Spoofing-Detector
 
-Vortex Mail Guard is a cybersecurity-based web application designed to detect and analyze **email spoofing attacks** using email header analysis and authentication checks.
+**Email-Spoofing-Detector** is a cybersecurity-based web application designed to detect and analyze **email spoofing attacks** using email header analysis and email authentication checks.
 
-It helps users identify whether an email is **legitimate, suspicious, or spoofed** by analyzing important email security indicators such as:
+This project helps users identify whether an email is **legitimate, suspicious, or spoofed** by analyzing important email security indicators such as:
 
 - SPF
 - DKIM
@@ -16,20 +16,31 @@ It helps users identify whether an email is **legitimate, suspicious, or spoofed
 
 ## 🚀 Project Overview
 
-Email spoofing is a common cyberattack technique where attackers forge the sender address of an email to make it look like it came from a trusted person, company, or organization.
+Email spoofing is a cyberattack technique where attackers forge the sender address of an email to make it appear as if the email came from a trusted person, company, or organization.
 
-This project helps users analyze raw email headers and detect possible spoofing attempts in a simple and understandable way.
+This project allows users to analyze raw email headers and detect possible spoofing attempts in a simple and understandable way.
+
+It is useful for:
+
+- Cybersecurity students
+- Security analysts
+- Email administrators
+- Digital forensics learners
+- Phishing detection research
+- Academic mini/major projects
 
 ---
 
 ## 🎯 Objectives
 
+The main objectives of this project are:
+
 - Detect spoofed emails using email header analysis
-- Verify sender authenticity using SPF, DKIM, and DMARC
+- Verify sender authenticity using SPF, DKIM, and DMARC checks
 - Identify mismatches in sender information
 - Detect suspicious email header patterns
-- Provide a simple result for users
-- Improve awareness about phishing and spoofing attacks
+- Provide a simple and understandable result to users
+- Improve awareness about phishing and email spoofing attacks
 
 ---
 
@@ -50,6 +61,8 @@ This project helps users analyze raw email headers and detect possible spoofing 
 
 ## 🛠️ Tech Stack
 
+This project uses the following technologies:
+
 - Python
 - Flask
 - Flask-Session
@@ -64,7 +77,7 @@ This project helps users analyze raw email headers and detect possible spoofing 
 ## 📁 Project Structure
 
 ```bash
-v0rtex-mail-guard/
+Email-Spoofing-Detector/
 │
 ├── app.py
 ├── requirements.txt
@@ -84,6 +97,8 @@ v0rtex-mail-guard/
 └── utils/
     └── header_analyzer.py
 ```
+
+> Note: The actual file structure may vary depending on your implementation.
 
 ---
 
@@ -124,13 +139,15 @@ pip --version
 ## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/glenjr009/v0rtex-mail-guard.git
-cd v0rtex-mail-guard
+git clone https://github.com/glenjr009/Email-Spoofing-Detector.git
+cd Email-Spoofing-Detector
 ```
 
 ---
 
 ## 2. Create a Virtual Environment
+
+Creating a virtual environment is recommended so that project dependencies remain separate from your system Python packages.
 
 ### For Windows
 
@@ -160,19 +177,29 @@ source venv/bin/activate
 
 ## 3. Install Required Dependencies
 
-```bash
-pip install flask flask-session
-```
-
-Or, if `requirements.txt` is available:
+Install all required dependencies using:
 
 ```bash
 pip install -r requirements.txt
 ```
 
+If `requirements.txt` is not available, install the basic dependencies manually:
+
+```bash
+pip install flask flask-session
+```
+
+Optional useful packages:
+
+```bash
+pip install dnspython email-validator tldextract
+```
+
 ---
 
 ## 4. Run the Application
+
+Run the Flask application using:
 
 ```bash
 python app.py
@@ -204,6 +231,7 @@ http://127.0.0.1:5000/
 4. Click on the analyze button.
 5. View the result.
 6. Check whether the email is legitimate, suspicious, or spoofed.
+7. Follow the security recommendation shown by the system.
 
 ---
 
@@ -240,6 +268,8 @@ SPF stands for **Sender Policy Framework**.
 
 It checks whether the mail server is allowed to send emails on behalf of a particular domain.
 
+If SPF fails, it may indicate that the email was sent from an unauthorized server.
+
 ---
 
 ### DKIM
@@ -248,6 +278,8 @@ DKIM stands for **DomainKeys Identified Mail**.
 
 It verifies whether the email was digitally signed by the sender domain.
 
+If DKIM is missing or failed, the email may have been modified or sent by an untrusted source.
+
 ---
 
 ### DMARC
@@ -255,6 +287,8 @@ It verifies whether the email was digitally signed by the sender domain.
 DMARC stands for **Domain-based Message Authentication, Reporting, and Conformance**.
 
 It helps email servers decide what to do when SPF or DKIM checks fail.
+
+DMARC helps protect domains from being abused in phishing and spoofing attacks.
 
 ---
 
@@ -268,6 +302,8 @@ The system checks for mismatches between:
 - Message-ID domain
 - Received headers
 - Authentication results
+
+If these values do not match properly, the email may be suspicious.
 
 ---
 
@@ -326,10 +362,13 @@ To stay protected from spoofed emails:
 - Use strong spam filters
 - Report phishing emails
 - Train users to identify suspicious emails
+- Monitor DMARC reports regularly
 
 ---
 
 ## 🚀 Future Enhancements
+
+Some future improvements for this project include:
 
 - Machine learning-based spoofing detection
 - Gmail API integration
@@ -340,6 +379,7 @@ To stay protected from spoofed emails:
 - Admin dashboard
 - Threat intelligence API integration
 - Email reputation scoring system
+- Browser extension support
 
 ---
 
@@ -396,7 +436,7 @@ You are free to use, modify, and distribute this project for educational and res
 If you found this project useful, consider giving it a star on GitHub.
 
 ```bash
-git clone https://github.com/glenjr009/v0rtex-mail-guard.git
+git clone https://github.com/glenjr009/Email-Spoofing-Detector.git
 ```
 
 ---
@@ -405,4 +445,4 @@ git clone https://github.com/glenjr009/v0rtex-mail-guard.git
 
 Email spoofing is one of the most common methods used in phishing attacks.
 
-Vortex Mail Guard helps analyze email headers, authentication results, and sender information to detect suspicious emails and improve email security awareness.
+**Email-Spoofing-Detector** helps analyze email headers, authentication results, and sender information to detect suspicious emails and improve email security awareness.
