@@ -11,7 +11,7 @@ The system combines **email authentication checks**, **threat intelligence**, **
 ## 👨‍💻 Author
 
 **Glen Fernandes**  
-Cybersecurity Enthusiast | Full-Stack Developer | Computer Science Undergraduate
+Cybersecurity Enthusiast | Web-Dev | Computer Science Undergraduate
 
 ---
 
