@@ -1,143 +1,104 @@
-# IDENTI_ALIGN // THREAT_STREAM
+# 📧 IDENTI_ALIGN // THREAT_STREAM
 
-**Asynchronous Email Forensic Gateway and Threat Intelligence Pipeline**
+## 🛡️ Asynchronous Email Forensic Gateway & Threat Intelligence Pipeline
 
-IDENTI_ALIGN // THREAT_STREAM is an academic and portfolio-focused cybersecurity project designed to detect **email spoofing**, **identity impersonation**, and **phishing anomalies** at scale using raw `.eml` file analysis.
+**IDENTI_ALIGN // THREAT_STREAM** is a cybersecurity-focused academic and portfolio project designed to detect **email spoofing**, **identity impersonation**, and **phishing anomalies** at scale using raw `.eml` file analysis.
 
-The system combines protocol-level authentication checks, weighted forensic scoring, OSINT-based network reputation, and concurrent batch processing to support practical email threat investigation workflows.
+The system combines **email authentication checks**, **threat intelligence**, **heuristic phishing analysis**, and **asynchronous bulk processing** to provide a structured forensic risk score for every scanned email.
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 **Glen Fernandes**  
 Cybersecurity Enthusiast | Full-Stack Developer | Computer Science Undergraduate
 
 ---
 
-## Project Overview
+## 📌 Project Overview
 
-Email spoofing and phishing remain common attack vectors used to impersonate trusted identities, bypass user awareness, and deliver malicious links or payloads.
+Email spoofing and phishing are among the most common techniques used by attackers to impersonate trusted identities, deceive users, and deliver malicious links or payloads.
 
-This project acts as a forensic email analysis gateway that processes raw `.eml` files and evaluates multiple threat signals, including:
+This project acts as an **email forensic analysis gateway** that processes raw `.eml` files and evaluates multiple threat signals such as:
 
-- SPF authentication failures
-- DMARC identifier alignment issues
-- Missing or invalid DKIM signatures
-- Suspicious phishing-related content
-- Network reputation using AbuseIPDB
-- Sender identity inconsistencies
+- 🧾 SPF authentication failures
+- 🔐 DKIM signature issues
+- 🛡️ DMARC identity alignment mismatches
+- 🌐 Suspicious sender infrastructure
+- 🚨 Phishing-related keywords
+- 📡 AbuseIPDB-based IP reputation
+- 📊 Weighted threat scoring
 
-The platform supports both **manual email upload analysis** and **automated batch ingestion** through a watched directory, making it suitable for academic demonstrations, portfolio review, and incident response-style workflows.
+The system supports both **manual upload-based analysis** and **automated batch ingestion**, making it suitable for academic demonstrations, portfolio evaluation, and incident response-style workflows.
 
 ---
 
-## Objectives
+## 🎯 Objectives
 
 The main objectives of this project are:
 
-- Analyze raw `.eml` files for spoofing and phishing indicators
-- Detect identity impersonation using SPF, DKIM, and DMARC logic
-- Generate a weighted threat score using multiple forensic signals
-- Process multiple emails concurrently using an asynchronous worker engine
-- Integrate OSINT-based reputation intelligence using AbuseIPDB
-- Provide downloadable CSV reports for incident response and review
-- Deliver a clean dashboard-based interface for visual threat analysis
+- 🔍 Analyze raw `.eml` files for spoofing and phishing indicators
+- 🛡️ Detect identity impersonation using SPF, DKIM, and DMARC checks
+- 📊 Generate a weighted threat score using multiple forensic signals
+- ⚡ Process bulk emails concurrently using an asynchronous engine
+- 🌐 Integrate OSINT-based reputation intelligence using AbuseIPDB
+- 📁 Support both manual uploads and automated folder-based ingestion
+- 📤 Export structured `.csv` reports for forensic review
+- 🖥️ Provide a clean dashboard interface for real-time threat visualization
 
 ---
 
-## Key Features
+## ✨ Key Features
 
-### Asynchronous Processing Engine
-
-The application uses `ThreadPoolExecutor` with **20 parallel workers** to process bulk email files concurrently.
-
-This avoids slow sequential scanning and improves performance during batch analysis.
-
----
-
-### Dual Ingestion Workflow
-
-The system supports two ingestion methods:
-
-| Ingestion Method | Description |
+| Feature | Description |
 |---|---|
-| Manual Upload | Upload `.eml` files directly through the web interface |
-| Batch Folder Watch | Automatically scan files placed inside the `/TEST_SAMPLES` directory |
-
-This design supports both user-driven testing and enterprise-style batch processing.
-
----
-
-### OSINT Threat Intelligence Layer
-
-The platform integrates with **AbuseIPDB** using REST API requests.
-
-To improve speed and reduce repeated API calls, the system uses an in-memory **L1 cache** for previously queried IP reputation results.
+| ⚡ Asynchronous Processing | Uses `ThreadPoolExecutor` with 20 parallel workers for concurrent email analysis |
+| 📥 Dual Ingestion | Supports both manual `.eml` uploads and automated `/TEST_SAMPLES` folder scanning |
+| 🌐 OSINT Threat Intel | Integrates AbuseIPDB for real-time IP reputation lookup |
+| 🧠 L1 Cache | Uses in-memory caching to reduce repeated API calls and improve performance |
+| 📊 Risk Scoring | Calculates a weighted risk score using SPF, DKIM, DMARC, OSINT, and keyword signals |
+| 📈 Dashboard UI | Uses Chart.js for visual analytics and Bootstrap 5 for a clean dark interface |
+| 📤 CSV Export | Generates downloadable forensic reports for all scanned emails |
+| 🧪 Test Data Utility | Includes `generate_varied.py` for generating varied email failure scenarios |
 
 ---
 
-### Multi-Signal Risk Scoring
-
-Each email is evaluated using a weighted scoring model that combines authentication, reputation, and heuristic content indicators.
-
-The final score determines whether the email is classified as:
-
-- SECURE
-- CAUTION
-- THREAT
-
----
-
-### Forensic Export Hub
-
-The system allows users to download a compiled `.csv` report containing structural analysis results for all scanned emails.
-
-This is useful for:
-
-- Incident response documentation
-- Academic evaluation
-- Threat hunting records
-- Forensic reporting
-- Dataset review
-
----
-
-## Tech Stack
+## 🧱 Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Backend | Python 3.13+, Flask |
-| Session Management | Flask-Session |
-| Production WSGI Server | Waitress |
-| Email Authentication | pyspf, dkimpy, dnspython |
-| Threat Intelligence | AbuseIPDB API using requests |
-| Concurrency | ThreadPoolExecutor |
-| Frontend | Bootstrap 5, Chart.js |
-| UI Theme | High-contrast dark mode / cyber-noir layout |
-| Export Format | CSV |
+| 🐍 Backend | Python 3.13+, Flask |
+| 🗂️ Session Management | Flask-Session |
+| 🚀 Production Server | Waitress |
+| 📧 Protocol Parsing | pyspf, dkimpy, dnspython |
+| 🌐 Threat Intelligence | AbuseIPDB API using requests |
+| ⚡ Concurrency | ThreadPoolExecutor |
+| 🎨 Frontend | Bootstrap 5 |
+| 📊 Visualization | Chart.js |
+| 📁 Export | CSV |
+| 🖥️ UI Style | High-contrast dark mode / cyber-noir layout |
 
 ---
 
-## Architecture Highlights
+## 🏗️ Architecture Highlights
 
-### 1. Asynchronous Core
+### ⚡ 1. Asynchronous Core
 
-The system uses a thread-based concurrent execution model to handle multiple email samples at once.
+The application uses a thread-based concurrent processing model to analyze multiple emails in parallel.
 
 ```python
 ThreadPoolExecutor(max_workers=20)
 ```
 
-This improves throughput during large-scale `.eml` analysis.
+This improves scanning speed during bulk `.eml` analysis and prevents slow sequential processing.
 
 ---
 
-### 2. Waitress Production Server
+### 🚀 2. Waitress Production Deployment
 
-The application uses **Waitress** as the production WSGI server instead of relying only on Flask’s development server.
+Instead of depending only on Flask’s development server, the project uses **Waitress** as the production WSGI server.
 
-Waitress is configured with multi-threaded socket binding to reduce common Windows socket conflicts such as:
+Waitress is configured with multi-threaded socket handling to reduce common Windows socket conflicts such as:
 
 ```text
 WinError 10038
@@ -145,46 +106,47 @@ WinError 10038
 
 ---
 
-### 3. L1 Threat Intelligence Cache
+### 🧠 3. L1 Threat Intelligence Cache
 
-Repeated AbuseIPDB checks can slow down analysis and consume API limits.
+AbuseIPDB queries can be slow and rate-limited when processing large batches.
 
-To solve this, the project uses an in-memory L1 cache that stores recently queried IP reputation results.
+To improve performance, the project uses an in-memory **L1 cache** for previously queried IP reputation results.
 
 Benefits:
 
-- Faster repeated scans
-- Reduced API usage
-- Improved batch processing performance
-- Better reliability during demos
+- ⚡ Faster repeated scans
+- 🌐 Reduced AbuseIPDB API calls
+- 📉 Lower rate-limit usage
+- 🚀 Better performance during demos
+- 🧪 More reliable batch processing
 
 ---
 
-## Multi-Signal Risk Matrix
+## 🧮 Multi-Signal Risk Matrix
 
-The engine calculates a granular risk score from `0` to `100+` points using five weighted vector layers.
+The engine calculates a granular risk score from `0` to `100+` points using five distinct weighted vector layers.
 
 | # | Detection Layer | Weight | Logic |
 |---|---|---:|---|
-| 1 | SPF Check Failure | +20 | Checks whether the sending server is authorized by the sender domain DNS records |
-| 2 | DMARC Identifier Mismatch | +25 | Compares the visible `From` address with technical origin domains to detect identity alignment gaps |
-| 3 | Missing or Invalid DKIM Signature | +10 to +15 | Verifies whether the email has a valid cryptographic domain signature |
-| 4 | OSINT Network Reputation | 0 to +50 | Applies half of the live Abuse Confidence Score returned by AbuseIPDB |
-| 5 | Heuristic Content Analysis | +10 per keyword | Scans email body for suspicious phishing terms such as `urgent`, `verify`, `suspend`, `action required`, and `password` |
+| 1 | 🧾 SPF Check Failure | `+20` | Checks whether the sending server is authorized by the sender domain DNS records |
+| 2 | 🛡️ DMARC Identifier Mismatch | `+25` | Compares the visible `From` address with technical origin domains to detect identity alignment gaps |
+| 3 | 🔐 Missing / Invalid DKIM Signature | `+10 to +15` | Verifies whether the email has a valid cryptographic digital signature |
+| 4 | 🌐 OSINT Network Reputation | `0 to +50` | Applies half of the live Abuse Confidence Score returned by AbuseIPDB |
+| 5 | 🚨 Heuristic Content Analysis | `+10 per keyword` | Scans body content for phishing keywords such as `urgent`, `verify`, `suspend`, `action required`, and `password` |
 
 ---
 
-## Risk Classification
+## 🚦 Risk Classification
 
-| Final Score | Classification | Status Color | Meaning |
+| Final Score | Classification | Status | Meaning |
 |---:|---|---|---|
-| `< 30` | SECURE | Green | Low-risk email with no major spoofing or phishing indicators |
-| `30 - 59` | CAUTION | Yellow | Suspicious email requiring manual review |
-| `60+` | THREAT | Red | High-risk email likely involving spoofing, impersonation, or phishing |
+| `< 30` | 🟢 SECURE | Low Risk | No major spoofing or phishing indicators detected |
+| `30 - 59` | 🟡 CAUTION | Medium Risk | Suspicious email requiring manual review |
+| `60+` | 🔴 THREAT | High Risk | Likely spoofing, impersonation, or phishing attempt |
 
 ---
 
-## Project Directory Structure
+## 📁 Project Directory Structure
 
 ```bash
 IDENTI_ALIGN-THREAT_STREAM/
@@ -213,21 +175,21 @@ IDENTI_ALIGN-THREAT_STREAM/
 
 ---
 
-## Installation Guide
+## ⚙️ Installation Guide
 
 Follow the steps below to set up and run the project locally.
 
 ---
 
-## Prerequisites
+## ✅ Prerequisites
 
 Make sure the following are installed on your system:
 
-- Python 3.13 or above
-- Git
-- pip
-- A modern web browser
-- AbuseIPDB API key
+- 🐍 Python 3.13 or above
+- 🌿 Git
+- 📦 pip
+- 🌐 Modern web browser
+- 🔑 AbuseIPDB API key
 
 Check Python version:
 
@@ -249,7 +211,7 @@ pip --version
 
 ---
 
-## 1. Clone the Repository
+## 📥 1. Clone the Repository
 
 ```bash
 git clone https://github.com/glenjr009/Email-Spoofing-Detector.git
@@ -258,13 +220,13 @@ cd Email-Spoofing-Detector
 
 ---
 
-## 2. Create a Virtual Environment
+## 🧪 2. Create a Virtual Environment
 
-Using a virtual environment is recommended to isolate project dependencies.
+Using a virtual environment is recommended to keep project dependencies isolated.
 
 ---
 
-### Windows PowerShell
+### 🪟 Windows PowerShell
 
 ```powershell
 python -m venv venv
@@ -290,7 +252,7 @@ Then activate again:
 
 ---
 
-### Windows Command Prompt
+### 🪟 Windows Command Prompt
 
 ```cmd
 python -m venv venv
@@ -304,7 +266,7 @@ venv\Scripts\activate
 
 ---
 
-### Linux / macOS
+### 🐧 Linux / macOS
 
 ```bash
 python3 -m venv venv
@@ -318,7 +280,7 @@ source venv/bin/activate
 
 ---
 
-## 3. Install Dependencies
+## 📦 3. Install Dependencies
 
 Install all required packages:
 
@@ -326,7 +288,7 @@ Install all required packages:
 pip install -r requirements.txt
 ```
 
-If `requirements.txt` is not available, install the dependencies manually:
+If `requirements.txt` is not available, install the required dependencies manually:
 
 ```bash
 pip install flask flask-session waitress pyspf dkimpy dnspython requests
@@ -346,15 +308,15 @@ requests
 
 ---
 
-## 4. Configure AbuseIPDB API Key
+## 🔑 4. Configure AbuseIPDB API Key
 
-This project uses AbuseIPDB for OSINT-based IP reputation scoring.
+This project uses **AbuseIPDB** for OSINT-based IP reputation scoring.
 
 Create an environment variable for your API key.
 
 ---
 
-### Windows PowerShell
+### 🪟 Windows PowerShell
 
 ```powershell
 $env:ABUSEIPDB_API_KEY="YOUR_API_KEY_HERE"
@@ -362,7 +324,7 @@ $env:ABUSEIPDB_API_KEY="YOUR_API_KEY_HERE"
 
 ---
 
-### Windows Command Prompt
+### 🪟 Windows Command Prompt
 
 ```cmd
 set ABUSEIPDB_API_KEY=YOUR_API_KEY_HERE
@@ -370,7 +332,7 @@ set ABUSEIPDB_API_KEY=YOUR_API_KEY_HERE
 
 ---
 
-### Linux / macOS
+### 🐧 Linux / macOS
 
 ```bash
 export ABUSEIPDB_API_KEY="YOUR_API_KEY_HERE"
@@ -378,7 +340,7 @@ export ABUSEIPDB_API_KEY="YOUR_API_KEY_HERE"
 
 ---
 
-## 5. Run the Application
+## ▶️ 5. Run the Application
 
 Run the application:
 
@@ -396,7 +358,7 @@ If Waitress is configured inside `app.py`, the application will start using the 
 
 ---
 
-## 6. Open the Web Interface
+## 🌐 6. Open the Web Interface
 
 After starting the server, open your browser and visit:
 
@@ -406,35 +368,35 @@ http://127.0.0.1:5000/
 
 ---
 
-## How to Use
+## 🧭 How to Use
 
 The project supports two main workflows:
 
-1. Manual Email Upload
-2. Automated Batch Ingestion
+1. 📤 Manual Email Upload
+2. 📁 Automated Batch Ingestion
 
 ---
 
-## Workflow 1: Manual Email Upload
+## 📤 Workflow 1: Manual Email Upload
 
 Use this workflow when you want to scan individual `.eml` files through the web interface.
 
 ### Steps
 
-1. Start the Flask application.
-2. Open the web dashboard in your browser.
-3. Upload one or more `.eml` files.
-4. Wait for the asynchronous engine to process the files.
-5. Review the classification result:
-   - SECURE
-   - CAUTION
-   - THREAT
-6. Check the detailed score breakdown.
-7. Download the `.csv` forensic report if required.
+1. ▶️ Start the Flask application.
+2. 🌐 Open the dashboard in your browser.
+3. 📤 Upload one or more `.eml` files.
+4. ⚡ Wait for the asynchronous engine to process the files.
+5. 📊 Review the classification result:
+   - 🟢 SECURE
+   - 🟡 CAUTION
+   - 🔴 THREAT
+6. 🧮 Check the detailed score breakdown.
+7. 📥 Download the `.csv` forensic report if required.
 
 ---
 
-## Workflow 2: Automated Batch Ingestion
+## 📁 Workflow 2: Automated Batch Ingestion
 
 Use this workflow when you want to simulate an enterprise-like email gateway pipeline.
 
@@ -452,7 +414,7 @@ TEST_SAMPLES/
 python app.py
 ```
 
-3. The system watches or scans the folder for available email samples.
+3. The system scans the folder for available email samples.
 
 4. Files are processed using the asynchronous worker pool.
 
@@ -462,7 +424,7 @@ python app.py
 
 ---
 
-## Generating Test Samples
+## 🧪 Generating Test Samples
 
 The project includes a simulation utility for generating varied email failure vectors.
 
@@ -480,17 +442,17 @@ python3 generate_varied.py
 
 This can be used to create different test scenarios such as:
 
-- SPF failure
-- DKIM missing
-- DKIM invalid
-- DMARC mismatch
-- Suspicious phishing keywords
-- High-risk sender infrastructure
-- Mixed authentication failure cases
+- 🧾 SPF failure
+- 🔐 DKIM missing
+- ❌ DKIM invalid
+- 🛡️ DMARC mismatch
+- 🚨 Suspicious phishing keywords
+- 🌐 High-risk sender infrastructure
+- ⚠️ Mixed authentication failure cases
 
 ---
 
-## Example Risk Output
+## 📊 Example Risk Output
 
 ```text
 Email File: sample_001.eml
@@ -505,14 +467,14 @@ Triggered Signals:
 - AbuseIPDB Reputation Score Applied: +10
 
 Recommendation:
-This email should be treated as malicious or highly suspicious. 
-Do not click links or download attachments. 
+This email should be treated as malicious or highly suspicious.
+Do not click links or download attachments.
 Escalate for manual incident response review.
 ```
 
 ---
 
-## CSV Export
+## 📤 CSV Export
 
 The forensic export module allows analysts to download a structured report.
 
@@ -520,71 +482,71 @@ The exported report may include:
 
 | Field | Description |
 |---|---|
-| File Name | Name of the analyzed `.eml` file |
-| Sender | Parsed sender identity |
-| Return Path | Technical return path address |
-| Source IP | Extracted sending IP address |
-| SPF Result | SPF pass/fail status |
-| DKIM Result | DKIM valid/invalid/missing status |
-| DMARC Result | DMARC alignment status |
-| Abuse Score | AbuseIPDB confidence score |
-| Risk Score | Final calculated threat score |
-| Classification | SECURE, CAUTION, or THREAT |
+| 📄 File Name | Name of the analyzed `.eml` file |
+| 👤 Sender | Parsed sender identity |
+| 🔁 Return Path | Technical return path address |
+| 🌐 Source IP | Extracted sending IP address |
+| 🧾 SPF Result | SPF pass/fail status |
+| 🔐 DKIM Result | DKIM valid/invalid/missing status |
+| 🛡️ DMARC Result | DMARC alignment status |
+| 📡 Abuse Score | AbuseIPDB confidence score |
+| 📊 Risk Score | Final calculated threat score |
+| 🚦 Classification | SECURE, CAUTION, or THREAT |
 
 ---
 
-## Security Logic Summary
+## 🧠 Security Logic Summary
 
 The detection engine does not depend on a single indicator.
 
 Instead, it uses a layered scoring model that combines:
 
-- Infrastructure authentication
-- Domain alignment
-- Cryptographic verification
-- IP reputation
-- Content heuristics
+- 🧾 Infrastructure authentication
+- 🛡️ Domain alignment
+- 🔐 Cryptographic verification
+- 🌐 IP reputation
+- 🚨 Content heuristics
 
-This reduces false confidence and provides a more practical forensic assessment.
+This provides a more practical and explainable forensic assessment compared to simple pass/fail detection.
 
 ---
 
-## Future Enhancements
+## 🚀 Future Enhancements
 
 Planned improvements include:
 
-- Authenticated Received Chain support
-- Redis-based L2 caching layer
-- DMARC RUA XML report parser
-- Email attachment scanning
-- URL extraction and phishing domain analysis
-- VirusTotal or URLScan.io integration
-- Role-based analyst dashboard
-- Case management and investigation tagging
-- PDF export for incident reports
-- Docker deployment support
-- CI/CD workflow for automated testing
-- Unit tests for detector modules
-- Real-time mailbox ingestion using IMAP
+- 🔗 Authenticated Received Chain support
+- 🧠 Redis-based L2 caching layer
+- 📩 DMARC RUA XML report parser
+- 📎 Email attachment scanning
+- 🔍 URL extraction and phishing domain analysis
+- 🌐 VirusTotal or URLScan.io integration
+- 👥 Role-based analyst dashboard
+- 🗂️ Case management and investigation tagging
+- 📄 PDF export for incident reports
+- 🐳 Docker deployment support
+- ⚙️ CI/CD workflow for automated testing
+- 🧪 Unit tests for detector modules
+- 📬 Real-time mailbox ingestion using IMAP
 
 ---
 
-## Academic Relevance
+## 🎓 Academic Relevance
 
-This project demonstrates practical implementation of cybersecurity concepts including:
+This project demonstrates practical implementation of cybersecurity and software engineering concepts including:
 
-- Email authentication protocols
-- Digital forensics
-- Threat intelligence integration
-- Concurrent processing
-- Web application development
-- Incident response reporting
-- Secure engineering design
-- Risk-based classification systems
+- 📧 Email authentication protocols
+- 🧪 Digital forensics
+- 🌐 Threat intelligence integration
+- ⚡ Concurrent processing
+- 🖥️ Web application development
+- 📤 Incident response reporting
+- 🛡️ Secure engineering design
+- 📊 Risk-based classification systems
 
 ---
 
-## Disclaimer
+## ⚠️ Disclaimer
 
 This project is developed strictly for **educational, academic, and defensive cybersecurity purposes**.
 
@@ -601,22 +563,22 @@ The purpose of this project is to help users understand, detect, and defend agai
 
 ---
 
-## License
+## 📄 License
 
-This project is released under the MIT License.
+This project is released under the **MIT License**.
 
 You are free to use, modify, and distribute this project for educational and research purposes, provided proper credit is given.
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 **Glen Fernandes**  
-Cybersecurity Enthusiast | Full-Stack Developer | Computer Science Undergraduate
+Cybersecurity Enthusiast | Web-Dev | Computer Science Undergraduate
 
 ---
 
-## Repository
+## 🔗 Repository
 
 ```bash
 git clone https://github.com/glenjr009/Email-Spoofing-Detector.git
@@ -624,8 +586,8 @@ git clone https://github.com/glenjr009/Email-Spoofing-Detector.git
 
 ---
 
-## Final Note
+## 💡 Final Note
 
-IDENTI_ALIGN // THREAT_STREAM provides a practical, engineering-focused approach to email spoofing detection by combining protocol verification, threat intelligence, heuristic scoring, and asynchronous processing.
+**IDENTI_ALIGN // THREAT_STREAM** provides a practical, engineering-focused approach to email spoofing detection by combining protocol verification, threat intelligence, heuristic scoring, and asynchronous processing.
 
-It is built to demonstrate how modern email forensic systems can move beyond simple pass/fail checks and provide structured, explainable threat classification.
+It demonstrates how modern email forensic systems can move beyond basic pass/fail checks and provide structured, explainable threat classification.
