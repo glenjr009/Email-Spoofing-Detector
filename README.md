@@ -1,9 +1,9 @@
-# 📧 IDENTI_ALIGN // THREAT_STREAM
+# 📧 SatyaPatra
 
-## 🛡️ Asynchronous Email Spoofing Detection & Forensic Analysis Gateway
+## 🛡️ Email Spoofing Detection & Forensic Analysis Tool
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge\&logo=python)
-![Flask](https://img.shields.io/badge/Flask-Web%20App-black?style=for-the-badge\&logo=flask)
+![Flask](https://img.shields.io/badge/Flask-Web%20Dashboard-black?style=for-the-badge\&logo=flask)
 ![Cybersecurity](https://img.shields.io/badge/Cybersecurity-Email%20Forensics-green?style=for-the-badge)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Naive%20Bayes-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)
@@ -12,18 +12,21 @@
 
 ## 🚀 Project Overview
 
-**IDENTI_ALIGN // THREAT_STREAM** is a cybersecurity-focused email forensic analysis tool designed to detect:
+**SatyaPatra** is a cybersecurity-focused email forensic analysis tool designed to verify whether an email is **genuine, suspicious, or spoofed**.
 
-* 📧 Email spoofing
-* 🎭 Sender impersonation
-* 🎣 Phishing indicators
-* 🧾 Header-based anomalies
-* 🌐 Suspicious sender reputation
-* 🤖 Malicious content patterns
+The name **SatyaPatra** means a **truthful or verified message**. Since email spoofing attacks fake sender identity, this project checks whether the visible sender identity and technical sender details are properly aligned or mismatched.
 
-The system analyzes raw `.eml` files and evaluates them using a **multi-layer risk scoring engine** that combines deterministic email authentication checks, threat intelligence, and Machine Learning-based content classification.
+SatyaPatra analyzes raw `.eml` email files and evaluates them using a multi-layer detection engine that combines:
 
-Instead of simply marking an email as spam or not spam, this project gives an explainable risk score and classifies each email as:
+* 🧾 SPF verification
+* 🔐 DKIM verification
+* 🛡️ Sender identity alignment
+* 🌐 AbuseIPDB IP reputation intelligence
+* 🤖 Machine Learning-based content classification
+* ⚡ Bulk asynchronous email processing
+* 📊 Risk scoring and dashboard visualization
+
+Instead of simply saying “spam” or “not spam,” SatyaPatra gives an explainable risk score and classifies each email as:
 
 | Final Score | Classification | Status Color | Meaning                                                                        |
 | ----------- | -------------- | ------------ | ------------------------------------------------------------------------------ |
@@ -49,32 +52,32 @@ The main objectives of this project are:
 
 * 🔍 Analyze raw `.eml` email files for spoofing and phishing indicators
 * 🛡️ Validate sender infrastructure using SPF checks
-* 🧾 Detect identity mismatches between visible and technical sender domains
+* 🧾 Detect mismatches between visible sender and technical sender domains
 * 🔐 Verify DKIM-based cryptographic integrity
-* 🌐 Integrate AbuseIPDB for sender IP reputation analysis
+* 🌐 Use AbuseIPDB for sender IP reputation analysis
 * 🤖 Apply Machine Learning for phishing-like content detection
 * ⚡ Process multiple emails concurrently using asynchronous workers
-* 📊 Generate clear `SECURE`, `CAUTION`, and `THREAT` classifications
+* 📊 Classify emails as `SECURE`, `CAUTION`, or `THREAT`
 * 📤 Export structured forensic reports in CSV format
 
 ---
 
 ## ✨ Key Features
 
-| Feature                          | Description                                                                         |
-| -------------------------------- | ----------------------------------------------------------------------------------- |
-| ⚡ **Asynchronous Processing**    | Uses `ThreadPoolExecutor` with 20 workers for concurrent bulk email analysis        |
-| 📤 **Manual Diagnostics**        | Allows users to upload one or more `.eml` files directly through the dashboard      |
-| 📁 **Automated Batch Ingestion** | Scans emails placed inside the `/TEST_SAMPLES` directory                            |
-| 🧾 **SPF Verification**          | Checks whether the sending server is authorized to send mail for the claimed domain |
-| 🔐 **DKIM Verification**         | Validates cryptographic email signatures                                            |
-| 🛡️ **Identity Alignment**       | Compares visible sender domain with technical Return-Path domain                    |
-| 🌐 **OSINT Threat Intelligence** | Uses AbuseIPDB to check sender IP reputation                                        |
-| 🧠 **L1 Reputation Cache**       | Stores repeated IP reputation lookups in memory for faster analysis                 |
-| 🤖 **ML Content Classification** | Uses TF-IDF and Multinomial Naive Bayes for phishing-like text detection            |
-| 📊 **Dashboard Visualization**   | Uses Chart.js to show risk distribution and score graphs                            |
-| 🎨 **Cyber-Themed UI**           | Hacker-style responsive dashboard using Bootstrap 5                                 |
-| 📤 **CSV Export**                | Exports structured forensic reports for review and incident response                |
+| Feature                          | Description                                                                          |
+| -------------------------------- | ------------------------------------------------------------------------------------ |
+| ⚡ **Asynchronous Processing**    | Uses `ThreadPoolExecutor` with 20 workers for concurrent bulk email analysis         |
+| 📤 **Manual Diagnostics**        | Allows users to upload one or more `.eml` files directly through the dashboard       |
+| 📁 **Automated Batch Ingestion** | Scans emails placed inside the `/TEST_SAMPLES` directory                             |
+| 🧾 **SPF Verification**          | Checks whether the sending server is authorized to send email for the claimed domain |
+| 🔐 **DKIM Verification**         | Validates cryptographic email signatures                                             |
+| 🛡️ **Identity Alignment**       | Compares visible `From` domain with technical `Return-Path` domain                   |
+| 🌐 **OSINT Threat Intelligence** | Uses AbuseIPDB to check sender IP reputation                                         |
+| 🧠 **L1 Reputation Cache**       | Stores repeated IP reputation lookups in memory to improve speed                     |
+| 🤖 **ML Content Classification** | Uses TF-IDF and Multinomial Naive Bayes for phishing-like text detection             |
+| 📊 **Dashboard Visualization**   | Uses Chart.js to show risk distribution, scores, and processing latency              |
+| 🎨 **Cyber-Themed UI**           | Hacker-style responsive dashboard using Bootstrap 5                                  |
+| 📤 **CSV Export**                | Exports structured forensic reports for review and incident response                 |
 
 ---
 
@@ -131,7 +134,7 @@ CSV Forensic Report Export
 
 ## 🧮 Multi-Signal Risk Scoring Matrix
 
-The detection engine calculates a final risk score from **0 to 100** using multiple independent threat layers.
+SatyaPatra calculates a final risk score from **0 to 100** using multiple independent threat layers.
 
 | No. | Threat Layer                        | Weight     | Detection Logic                                                                |
 | --- | ----------------------------------- | ---------- | ------------------------------------------------------------------------------ |
@@ -155,7 +158,7 @@ The detection engine calculates a final risk score from **0 to 100** using multi
 
 ## 🤖 Machine Learning Layer
 
-The project includes a lightweight Machine Learning-based content analysis layer.
+SatyaPatra includes a lightweight Machine Learning-based content analysis layer.
 
 The ML pipeline uses:
 
@@ -177,13 +180,20 @@ Spam / Phishing Probability
 Content Risk Penalty
 ```
 
-This helps the tool detect suspicious language patterns such as urgency, rewards, account suspension messages, password verification prompts, and phishing-style wording.
+This helps detect suspicious language patterns such as:
+
+* Urgency-based messages
+* Fake reward messages
+* Password verification requests
+* Account suspension warnings
+* Phishing-style wording
+* Social engineering phrases
 
 ---
 
 ## ⚡ Asynchronous Processing
 
-The application uses Python’s `ThreadPoolExecutor` for concurrent email processing.
+SatyaPatra uses Python’s `ThreadPoolExecutor` for concurrent email processing.
 
 ```python
 ThreadPoolExecutor(max_workers=20)
@@ -195,6 +205,7 @@ ThreadPoolExecutor(max_workers=20)
 * Better throughput
 * Improved demo performance
 * More realistic enterprise-style email gateway behavior
+* Reduced waiting time during batch scanning
 
 ---
 
@@ -214,13 +225,14 @@ intel_cache = {}
 * Reduced API usage
 * Better rate-limit handling
 * Improved batch-processing performance
+* More reliable demonstrations
 
 ---
 
 ## 📁 Project Directory Structure
 
 ```text
-Email-Spoofing-Detector/
+SatyaPatra-Email-Spoofing-Detector/
 │
 ├── app.py
 │   └── Flask routes, dashboard UI, file upload, batch processing, CSV export
@@ -350,7 +362,7 @@ scikit-learn
 
 ## 🔑 4. Configure AbuseIPDB API Key
 
-This project uses AbuseIPDB for live IP reputation scoring.
+SatyaPatra uses AbuseIPDB for live IP reputation scoring.
 
 Create an environment variable named:
 
@@ -400,7 +412,7 @@ http://127.0.0.1:5000/
 
 ## 🧭 Operational Modes
 
-The project supports two main workflows:
+SatyaPatra supports two main workflows:
 
 ---
 
@@ -483,7 +495,7 @@ Possible generated test profiles include:
 ## 🖥️ Example Pipeline Telemetry
 
 ```text
-[INIT] IDENTI_ALIGN // THREAT_STREAM starting forensic gateway...
+[INIT] SatyaPatra starting forensic gateway...
 [INIT] Flask session engine loaded using filesystem-backed storage
 [INIT] Waitress WSGI server initialized
 [INIT] ML pipeline loading TfidfVectorizer and MultinomialNB(alpha=1.0)
@@ -548,7 +560,7 @@ The forensic export hub generates a structured `.csv` report for scanned emails.
 
 ## 🧠 Detection Logic Summary
 
-The system does not rely on a single signal.
+SatyaPatra does not rely on a single signal.
 
 Instead, it combines deterministic verification and probabilistic ML scoring:
 
@@ -570,6 +582,7 @@ The dashboard includes:
 * Cyber-themed responsive UI
 * Manual `.eml` upload module
 * Automated batch scan module
+* Three-level risk classification guide
 * Real-time risk distribution chart
 * Score visualization chart
 * Pipeline latency chart
@@ -682,14 +695,14 @@ If you like this project or found it useful, consider giving it a ⭐ on GitHub.
 
 ## 💡 Final Note
 
-**IDENTI_ALIGN // THREAT_STREAM** provides a structured and explainable approach to email spoofing detection by combining protocol verification, OSINT threat intelligence, asynchronous processing, and Machine Learning-based phishing content analysis.
+**SatyaPatra** provides a structured and explainable approach to email spoofing detection by combining protocol verification, OSINT threat intelligence, asynchronous processing, and Machine Learning-based phishing content analysis.
 
 The project demonstrates how modern email forensic systems can move beyond static keyword heuristics and adopt a layered detection model that is scalable, interpretable, and practical for real-world cybersecurity workflows.
 
 ---
 
 <p align="center">
-  <b>🛡️ Developed by cyb3rPh03n1x | Glen Fernandes 🛡️</b>
+  <b>🛡️ Developed by Glen Fernandes aka cyb3rPh03n1x🛡️</b>
 </p>
 
 <p align="center">
