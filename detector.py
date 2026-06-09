@@ -22,7 +22,7 @@ ABUSE_IPDB_KEY = os.getenv("ABUSE_IPDB_KEY", "")
 intel_cache = {}
 
 
-print("\n[SYSTEM] Initializing Content Analytics Pipeline...")
+print("\n[SATYAPATRA] Initializing Content Analytics Pipeline...")
 print("[SYSTEM] Compiling Training Corpus into Feature Vectors...")
 
 
@@ -56,7 +56,7 @@ X_train_tfidf = ml_vectorizer.fit_transform(ml_df["text"])
 ml_classifier = MultinomialNB(alpha=1.0)
 ml_classifier.fit(X_train_tfidf, ml_df["label"])
 
-print("[SYSTEM] Multinomial Naive Bayes Engine Online.")
+print("[SATYAPATRA] Multinomial Naive Bayes Engine Online.")
 
 
 def extract_sender_ip(msg):

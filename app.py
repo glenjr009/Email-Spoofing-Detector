@@ -31,7 +31,7 @@ HTML = """
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IDENTI_ALIGN // THREAT_STREAM</title>
+    <title>SATYAPATRA // THREAT_STREAM</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -610,7 +610,7 @@ HTML = """
 
 <nav class="navbar sticky-top">
     <div class="container-fluid px-4">
-        <span class="navbar-brand">🛡️ IDENTI_ALIGN // THREAT_STREAM</span>
+        <span class="navbar-brand">🛡️ SATYAPATRA // THREAT_STREAM</span>
         <span class="nav-subtitle d-none d-md-inline">
             <span class="status-dot"></span>ZERO TRUST EMAIL FORENSICS
         </span>
@@ -620,15 +620,15 @@ HTML = """
 <div class="container main-shell py-4">
 
     <div class="hero-panel">
-        <div class="hero-kicker">EMAIL SPOOFING DETECTION ENGINE</div>
+        <div class="hero-kicker">SATYAPATRA EMAIL FORENSIC ENGINE</div>
 
         <div class="hero-title">
             Detect. Analyze. <span>Expose.</span>
         </div>
 
         <p class="hero-desc">
-            A cyber-forensic dashboard for bulk email analysis using header validation,
-            identity checks, threat scoring, and forensic report generation.
+            SatyaPatra verifies whether an email is truthful or spoofed by analyzing sender identity,
+            headers, reputation signals, threat score, and phishing indicators.
         </p>
 
         <div class="hero-chips">
@@ -931,7 +931,7 @@ HTML = """
        cyb3rPh03n1x
     </a>
     //
-    <span class="pulse">IDENTI_ALIGN ACTIVE</span>
+    <span class="pulse">SATYAPATRA ACTIVE</span>
 </footer>
 
 <script>
@@ -1151,5 +1151,5 @@ def download_csv():
 
 
 if __name__ == "__main__":
-    print(">> IDENTI_ALIGN IS ONLINE [WAITRESS SERVER]")
+    print(">> SATYAPATRA IS ONLINE [WAITRESS SERVER]")
     serve(app, host="127.0.0.1", port=5000)
