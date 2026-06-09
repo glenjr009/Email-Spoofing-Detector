@@ -702,7 +702,7 @@ The project demonstrates how modern email forensic systems can move beyond stati
 ---
 
 <p align="center">
-  <b>🛡️ Developed by cyb3rPh03n1x | Glen Fernandes 🛡️</b>
+  <b>🛡️ Developed by Glen Fernandes aka cyb3rPh03n1x🛡️</b>
 </p>
 
 <p align="center">
